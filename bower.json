@@ -1,9 +1,8 @@
 {
     "name": "binarta.web.storage.angular",
-    "version": "0.0.0",
     "main": "./src/web.storage.js",
     "dependencies": {
-        "angular": "1.0.7"
+        "angular": "1.2.5"
     },
     "ignore": [
         "**/.*",
