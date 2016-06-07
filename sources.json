@@ -1,0 +1,5 @@
+{
+  "default": {
+    "web.storage": "bower_components/binarta.web.storage.angular/src/web.storage.js"
+  }
+}
