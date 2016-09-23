@@ -1,18 +1,38 @@
-angular.module('web.storage', [])
-    .factory('localStorage', function() {
-        var local = {};
+(function () {
+    angular.module('web.storage', [])
+        .factory('localStorage', LocalStorageFactory)
+        .factory('sessionStorage', SessionStorageFactory);
+
+    function LocalStorageFactory() {
+        return StorageFactory('localStorage');
+    }
+
+    function SessionStorageFactory() {
+        return StorageFactory('sessionStorage');
+    }
+
+    function StorageFactory(storage) {
         try {
-            localStorage.storageAvailable = true;
-            return localStorage;
-        } catch (e) {
-            return local;
+            window[storage].setItem('storageAvailable', true);
+            return window[storage];
+        } catch (ignored) {
+            return new InMemoryStorage(storage);
         }
-    }).factory('sessionStorage', function() {
-        var session = {};
-        try {
-            sessionStorage.storageAvailable = true;
-            return sessionStorage;
-        } catch (e) {
-            return session;
+    }
+
+    function InMemoryStorage(id) {
+        var self = this;
+
+        this.setItem = function (k, v) {
+            self[k] = '' + v
+        };
+
+        this.getItem = function (k) {
+            return self[k] || null;
+        };
+
+        this.removeItem = function (k) {
+            delete self[k];
         }
-    });
+    }
+})();
