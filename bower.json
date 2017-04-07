@@ -1,11 +1,9 @@
 {
   "name": "binarta.web.storage.angular",
-  "main": [
-    "./src/web.storage.js",
-    "./sources.json"
-  ],
+  "main": "./src/web.storage.js",
   "dependencies": {
-    "binarta.angularx": "0.*.*"
+    "binarta.angularx": "0.*.*",
+    "binarta.web.storage": "0.*.*"
   },
   "ignore": [
     "**/.*",
